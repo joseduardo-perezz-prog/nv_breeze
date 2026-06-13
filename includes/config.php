@@ -60,6 +60,12 @@ $business = [
     'languages'   => ['English', 'Spanish'],
     'price_range' => '$$',
 
+    // Tarifa de visita / service call (flat)
+    'service_fee'       => '$119',
+    'service_fee_areas' => 'Reno & Carson City',
+    'service_fee_note'  => 'Flat service-call fee — we come out, fully diagnose the issue, and you decide how to proceed. No surprises.',
+    'phone_hours'       => 'We answer calls 24/7',
+
     // Redes sociales (sameAs). Deja en '' las que no uses.
     'social' => [
         'facebook'  => '',
@@ -71,44 +77,35 @@ $business = [
     // Áreas servidas
     'areas' => ['Reno', 'Sparks', 'Carson City', 'Washoe Valley', 'Sun Valley', 'Spanish Springs', 'Cold Springs'],
 
-    // Catálogo de servicios (alimenta home, services y schema)
+    // Catálogo de servicios — 3 pilares (alimenta home, services y schema).
+    // El contenido extendido de cada uno vive en services.php ($details).
     'services' => [
         [
             'slug'  => 'air-conditioning',
             'icon'  => 'snowflake',
             'title' => 'Air Conditioning',
-            'short' => 'Beat the Nevada heat with high-efficiency AC installation, repair, and maintenance.',
+            'short' => 'Beat the Nevada heat with high-efficiency AC installation, fast repairs, and seasonal tune-ups that keep your home cool and your energy bills low.',
         ],
         [
             'slug'  => 'heating-furnace',
             'icon'  => 'fire',
             'title' => 'Heating & Furnace',
-            'short' => 'Stay warm all winter with furnace installation, repair, and seasonal tune-ups.',
-        ],
-        [
-            'slug'  => 'ductless-mini-split',
-            'icon'  => 'wind',
-            'title' => 'Ductless Mini-Splits',
-            'short' => 'Energy-efficient zoned comfort for additions, garages, and whole homes.',
-        ],
-        [
-            'slug'  => 'boiler-service',
-            'icon'  => 'temperature',
-            'title' => 'Boiler Service',
-            'short' => 'Expert repair and maintenance for residential and light-commercial boilers.',
+            'short' => 'Stay warm all winter with expert furnace and heating system installation, quick repairs, and safety inspections you can count on.',
         ],
         [
             'slug'  => 'hvac-maintenance',
-            'icon'  => 'tools',
-            'title' => 'HVAC Maintenance',
-            'short' => 'Preventive tune-ups and smart thermostat upgrades that extend system life.',
+            'icon'  => 'screwdriver-wrench',
+            'title' => 'HVAC Maintenance & Installs',
+            'short' => 'Year-round maintenance, ductless mini-splits, smart thermostats, and boiler service to protect your comfort all season long.',
         ],
-        [
-            'slug'  => 'indoor-air-quality',
-            'icon'  => 'leaf',
-            'title' => 'Indoor Air Quality',
-            'short' => 'Ventilation, filtration, and air purification for a healthier home.',
-        ],
+    ],
+
+    // Opciones granulares para el desplegable del formulario de contacto
+    'form_services' => [
+        'AC Installation', 'AC Repair', 'AC Maintenance / Tune-Up',
+        'Heating / Furnace Installation', 'Heating / Furnace Repair',
+        'Ductless Mini-Split', 'Boiler Service', 'Smart Thermostat',
+        'Emergency Service', 'Other',
     ],
 ];
 
@@ -197,6 +194,17 @@ function nv_jsonld() {
             'availableLanguage' => $business['languages'],
         ],
         'areaServed' => $areaServed,
+        'makesOffer' => [
+            '@type' => 'Offer',
+            'name'  => 'HVAC Service Call',
+            'description' => $business['service_fee_note'],
+            'priceSpecification' => [
+                '@type' => 'PriceSpecification',
+                'price' => ltrim($business['service_fee'], '$'),
+                'priceCurrency' => 'USD',
+            ],
+            'areaServed' => ['Reno, NV', 'Carson City, NV'],
+        ],
         'hasOfferCatalog' => [
             '@type' => 'OfferCatalog',
             'name'  => 'HVAC Services',

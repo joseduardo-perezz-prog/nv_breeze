@@ -53,7 +53,11 @@ include 'includes/header.php';
                     </div>
                     <div class="info-item">
                         <div class="ic"><i class="fas fa-clock"></i></div>
-                        <div><h4>Hours</h4><span><?= htmlspecialchars($business['hours_human']) ?></span></div>
+                        <div><h4>Hours</h4><span><?= htmlspecialchars($business['hours_human']) ?> · <?= htmlspecialchars($business['phone_hours']) ?></span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="ic"><i class="fas fa-dollar-sign"></i></div>
+                        <div><h4>Service Call</h4><span><?= htmlspecialchars($business['service_fee']) ?> flat fee in <?= htmlspecialchars($business['service_fee_areas']) ?>. <?= htmlspecialchars($business['service_fee_note']) ?></span></div>
                     </div>
                 </div>
             </div>
@@ -90,11 +94,9 @@ include 'includes/header.php';
                         <label for="service">Service Needed *</label>
                         <select name="service" id="service" class="form-control" required>
                             <option value="">Select a service…</option>
-                            <?php foreach ($business['services'] as $s): ?>
-                                <option value="<?= htmlspecialchars($s['title']) ?>"><?= htmlspecialchars($s['title']) ?></option>
+                            <?php foreach ($business['form_services'] as $opt): ?>
+                                <option value="<?= htmlspecialchars($opt) ?>"><?= htmlspecialchars($opt) ?></option>
                             <?php endforeach; ?>
-                            <option value="Emergency Repair">Emergency Repair</option>
-                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -52,8 +52,11 @@ try {
     $mail->SMTPAuth   = true;
     $mail->Username   = SMTP_USER;
     $mail->Password   = SMTP_PASS;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   // TLS en puerto 587
+    // Cifrado automático: 465 = SSL/SMTPS, cualquier otro (587) = STARTTLS/TLS
     $mail->Port       = (int) SMTP_PORT;
+    $mail->SMTPSecure = ((int) SMTP_PORT === 465)
+        ? PHPMailer::ENCRYPTION_SMTPS
+        : PHPMailer::ENCRYPTION_STARTTLS;
     $mail->CharSet    = 'UTF-8';
 
     $mail->setFrom(SMTP_FROM, SMTP_FROM_NAME);

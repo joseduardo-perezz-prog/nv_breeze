@@ -68,14 +68,17 @@ include 'includes/header.php';
     </div>
 </section>
 
+<!-- ============ SERVICE FEE BAND ============ -->
+<?php include 'includes/fee-band.php'; ?>
+
 <!-- ============ SERVICES ============ -->
 <section class="section">
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">What We Do</span>
-            <h2>Expert HVAC Solutions Built For Comfort</h2>
+            <h2>Three Ways We Keep You Comfortable</h2>
             <div class="rule"></div>
-            <p>Full-service heating and cooling tailored to keep your home efficient, compliant and comfortable in every season.</p>
+            <p>Full-service heating and cooling tailored to keep your home efficient, safe and comfortable in every season.</p>
         </div>
 
         <div class="grid grid-3">

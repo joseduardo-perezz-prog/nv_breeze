@@ -5,67 +5,40 @@ $page_title       = 'HVAC Services in Reno, NV | AC, Heating, Ductless & Boilers
 $page_description = 'Complete HVAC services in Reno, Nevada: air conditioning installation & repair, heating and furnace service, ductless mini-splits, boiler repair, maintenance and indoor air quality.';
 $active = 'services';
 
-/* Detalle ampliado por servicio (texto + bullets + imagen) */
+/* Detalle ampliado por servicio (texto persuasivo + bullets + imagen) */
 $details = [
     'air-conditioning' => [
-        'tag'    => 'Climate Optimization',
-        'lead'   => 'We handle residential and light-commercial cooling systems engineered to keep your home stable and efficient through the hottest Nevada summers.',
+        'tag'    => 'Cooling You Can Rely On',
+        'lead'   => 'When the Nevada sun is relentless, the last thing you need is an AC that quits. Our certified technicians install, repair and fine-tune cooling systems built to keep your family comfortable on the hottest days — while cutting down those summer energy bills. We diagnose the real problem the first time, so you\'re not paying for the same repair twice.',
         'image'  => 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1000&auto=format&fit=crop',
         'points' => [
-            ['Install AC Systems', 'Right-sized unit selection matched precisely to your home\'s footprint.'],
-            ['AC Repair', 'Fast diagnostics, refrigerant checks and circuit restoration.'],
-            ['Seasonal Tune-Ups', 'Preventive maintenance that lowers bills and prevents breakdowns.'],
+            ['New AC Installation', 'Right-sized, high-efficiency systems matched perfectly to your home.'],
+            ['Fast AC Repair', 'Same-day diagnostics, refrigerant checks and component fixes.'],
+            ['Seasonal Tune-Ups', 'Preventive maintenance that stops breakdowns before they start.'],
         ],
+        'cta'    => 'Cool My Home',
     ],
     'heating-furnace' => [
-        'tag'    => 'Winter Thermal Care',
-        'lead'   => 'Protect your home from the cold with complete furnace installation, repair and tune-ups for classic and modern gas heating systems.',
+        'tag'    => 'Warm, Safe Winters',
+        'lead'   => 'A cold home in a Northern Nevada winter is more than uncomfortable — it can be unsafe. We install and repair furnaces and heating systems with a focus on safety, efficiency and reliability, so your family stays warm no matter how low the temperature drops. Every job includes a safety check for total peace of mind.',
         'image'  => 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?q=80&w=1000&auto=format&fit=crop',
         'points' => [
-            ['Furnace Installation', 'High-efficiency furnaces and clean, code-compliant ventilation.'],
+            ['Furnace Installation', 'High-efficiency furnaces with clean, code-compliant ventilation.'],
             ['Heating Repair', 'Rapid troubleshooting to restore warmth when you need it most.'],
-            ['Safety Inspections', 'Carbon monoxide and combustion checks for total peace of mind.'],
+            ['Safety Inspections', 'Carbon monoxide and combustion checks on every visit.'],
         ],
-    ],
-    'ductless-mini-split' => [
-        'tag'    => 'Zoned Efficiency',
-        'lead'   => 'Ductless mini-splits deliver targeted, energy-efficient comfort — perfect for additions, garages, offices or whole-home solutions.',
-        'image'  => 'https://images.unsplash.com/photo-1631545806609-24a8a3f4c0b9?q=80&w=1000&auto=format&fit=crop',
-        'points' => [
-            ['Mini-Split Installation', 'Sleek, quiet indoor units with flexible zoning options.'],
-            ['Heat Pump Systems', 'Year-round heating and cooling from a single efficient system.'],
-            ['Smart Controls', 'Wi-Fi thermostats and app-based comfort management.'],
-        ],
-    ],
-    'boiler-service' => [
-        'tag'    => 'Hydronic Systems',
-        'lead'   => 'Expert care for residential and light-commercial boilers, with targeted pressure balancing across custom hydronic machinery.',
-        'image'  => 'https://images.unsplash.com/photo-1607400201515-c2c41c07d307?q=80&w=1000&auto=format&fit=crop',
-        'points' => [
-            ['Boiler Repair', 'Leak detection, pressure balancing and component replacement.'],
-            ['Boiler Maintenance', 'Annual servicing to keep systems safe and efficient.'],
-            ['System Upgrades', 'Modern, efficient replacements for aging equipment.'],
-        ],
+        'cta'    => 'Heat My Home',
     ],
     'hvac-maintenance' => [
-        'tag'    => 'Preventive Care',
-        'lead'   => 'Routine maintenance is the single best way to extend equipment life and avoid costly emergency repairs down the line.',
+        'tag'    => 'Total Home Comfort',
+        'lead'   => 'Comfort is about more than just heating and cooling. From energy-saving ductless mini-splits and smart thermostats to boiler service and routine maintenance plans, we keep every part of your system running at its best. Regular care is the single smartest way to extend equipment life and avoid expensive emergency repairs.',
         'image'  => 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1000&auto=format&fit=crop',
         'points' => [
-            ['Tune-Up Plans', 'Scheduled seasonal service for cooling and heating systems.'],
-            ['Filter & Coil Care', 'Cleaner air, better airflow and improved efficiency.'],
-            ['Thermostat Upgrades', 'Smart automation that pays for itself in savings.'],
+            ['Ductless Mini-Splits', 'Quiet, efficient, zoned comfort for additions, garages and offices.'],
+            ['Boiler Service', 'Repair, maintenance and upgrades for hydronic heating systems.'],
+            ['Maintenance & Thermostats', 'Tune-up plans and smart controls that pay for themselves.'],
         ],
-    ],
-    'indoor-air-quality' => [
-        'tag'    => 'Healthier Homes',
-        'lead'   => 'Breathe easier with ventilation, filtration and purification solutions tailored to Northern Nevada\'s dry, dusty climate.',
-        'image'  => 'https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?q=80&w=1000&auto=format&fit=crop',
-        'points' => [
-            ['Air Purification', 'Whole-home systems that capture dust, allergens and more.'],
-            ['Ventilation', 'Balanced fresh-air solutions for tighter, modern homes.'],
-            ['Humidity Control', 'Comfort and protection from over-dry indoor air.'],
-        ],
+        'cta'    => 'Book Maintenance',
     ],
 ];
 
@@ -79,6 +52,8 @@ include 'includes/header.php';
         <div class="breadcrumb"><a href="/">Home</a> &rsaquo; Services</div>
     </div>
 </section>
+
+<?php include 'includes/fee-band.php'; ?>
 
 <section class="section">
     <div class="container">
@@ -99,7 +74,10 @@ include 'includes/header.php';
                         <li><i class="fas fa-check"></i> <span><strong><?= htmlspecialchars($p[0]) ?></strong><?= htmlspecialchars($p[1]) ?></span></li>
                     <?php endforeach; ?>
                 </ul>
-                <div style="margin-top:26px;"><a href="/contact" class="btn btn-primary">Request This Service</a></div>
+                <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;">
+                    <a href="/contact" class="btn btn-primary"><?= htmlspecialchars($d['cta']) ?></a>
+                    <a href="tel:<?= $business['phone_raw'] ?>" class="btn btn-dark"><i class="fas fa-phone"></i> <?= htmlspecialchars($business['phone']) ?></a>
+                </div>
             </div>
         </div>
         <?php $i++; endforeach; ?>

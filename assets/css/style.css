@@ -569,6 +569,27 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .cta-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 
 /* ---------------------------------------------------------------------
+   16b. SERVICE-FEE BAND ($119 service call)
+   ------------------------------------------------------------------- */
+.fee-band { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); color: #fff; }
+.fee-band .container {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 16px 36px; padding: 30px 24px; text-align: center;
+}
+.fee-price {
+    display: flex; align-items: baseline; gap: 6px;
+    font-family: var(--font-serif); font-weight: 700; line-height: 1;
+}
+.fee-price .amt { font-size: clamp(2.4rem, 6vw, 3.2rem); }
+.fee-price .cur { font-size: 1.4rem; opacity: 0.9; }
+.fee-copy { text-align: left; max-width: 520px; }
+.fee-copy strong { display: block; font-family: var(--font-sans); font-weight: 800; font-size: 1.1rem; color: #fff; letter-spacing: -0.01em; }
+.fee-copy span { font-size: 0.92rem; opacity: 0.95; }
+.fee-band .btn-outline { border-color: rgba(255,255,255,0.85); }
+.fee-band .btn-outline:hover { background: #fff; color: var(--accent-hover); }
+@media (max-width: 560px) { .fee-copy { text-align: center; } }
+
+/* ---------------------------------------------------------------------
    17. FOOTER
    ------------------------------------------------------------------- */
 .site-footer { background: var(--navy); color: #aab2c2; border-top: 3px solid var(--accent); padding: 64px 0 0; }
