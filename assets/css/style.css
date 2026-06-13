@@ -1,0 +1,339 @@
+:root {
+    --primary-blue: #1a253d;
+    --accent-orange: #f39c12;
+    --light-gray: #f4f7f6;
+    --white: #ffffff;
+}
+
+body { font-family: 'Roboto', sans-serif; margin: 0; color: #333; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Header & Nav */
+.top-bar { background: var(--primary-blue); color: white; padding: 5px 0; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.top-bar .container { display: flex; justify-content: space-between; }
+.top-bar a { color: var(--accent-orange); text-decoration: none; font-weight: bold; }
+
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+.logo-text { font-weight: 800; font-size: 1.5rem; color: var(--primary-blue); }
+.logo-text span { color: var(--accent-orange); }
+
+.nav-links { list-style: none; display: flex; align-items: center; }
+.nav-links li { margin-left: 25px; }
+.nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: bold; }
+
+.btn-estimate { background: var(--primary-blue); color: white !important; padding: 10px 20px; border-radius: 5px; transition: 0.3s; }
+.btn-estimate:hover { background: var(--accent-orange); }
+
+/* Formulario */
+.contact-section { padding: 60px 0; background: var(--light-gray); }
+.form-card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; }
+.form-group { margin-bottom: 20px; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;
+}
+
+/* Honeypot Anti-Spam: Oculto para humanos */
+.hp-field { display: none !important; }
+
+.btn-send { 
+    background: var(--accent-orange); color: white; border: none; padding: 15px 30px; 
+    font-size: 1.1rem; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;
+}
+.btn-send:hover { background: var(--primary-blue); }
+
+/* Footer */
+footer { background: var(--primary-blue); color: white; padding: 40px 0 20px; margin-top: 50px; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 0.9rem; }
+
+/* =========================================
+   HERO SECTION (Sección principal index)
+   ========================================= */
+.hero {
+    position: relative;
+    /* Asegúrate de subir una foto atractiva (puede ser la van) y nombrarla hero-bg.jpg */
+    background-image: url('../img/hero-bg.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+/* Capa oscura para que el texto se lea perfectamente */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26, 37, 61, 0.75); /* Azul marino al 75% de opacidad */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero h3 { 
+    color: var(--accent-orange); 
+    letter-spacing: 2px; 
+    font-size: 1.1rem; 
+    text-transform: uppercase; 
+    margin-bottom: 15px;
+}
+
+.hero h1 { 
+    font-size: 3.5rem; 
+    margin: 0 0 20px 0; 
+    font-weight: 800; 
+    line-height: 1.1; 
+}
+
+.hero p { 
+    font-size: 1.2rem; 
+    margin-bottom: 35px; 
+    font-weight: 300;
+}
+
+/* Botones del Hero */
+.hero-buttons a {
+    display: inline-block; 
+    padding: 15px 35px; 
+    margin: 10px; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    text-decoration: none; 
+    transition: all 0.3s ease;
+}
+
+.btn-primary { 
+    background: var(--accent-orange); 
+    color: var(--white) !important; 
+}
+.btn-primary:hover { 
+    background: #d68910; 
+    transform: translateY(-2px);
+}
+
+.btn-secondary { 
+    background: transparent; 
+    border: 2px solid var(--white); 
+    color: var(--white) !important; 
+}
+.btn-secondary:hover { 
+    background: var(--white); 
+    color: var(--primary-blue) !important; 
+}
+
+/* =========================================
+   TARJETAS DE SERVICIOS RÁPIDOS
+   ========================================= */
+.quick-services { padding: 80px 20px; }
+.text-center { text-align: center; color: var(--primary-blue); margin-bottom: 50px; font-size: 2.5rem; }
+
+.services-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+.service-card {
+    background: var(--white); 
+    padding: 40px 30px; 
+    border-radius: 8px; 
+    text-align: center; 
+    transition: 0.3s; 
+    border-bottom: 4px solid transparent;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.service-card:hover { 
+    transform: translateY(-10px); 
+    border-bottom: 4px solid var(--accent-orange); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+}
+
+.service-card i { 
+    font-size: 3.5rem; 
+    color: var(--accent-orange); 
+    margin-bottom: 20px; 
+}
+
+.service-card h3 { 
+    color: var(--primary-blue); 
+    margin-bottom: 15px; 
+    font-size: 1.5rem;
+}
+/* =========================================
+   NUEVAS SECCIONES INDEX
+   ========================================= */
+.split-layout { display: flex; align-items: center; gap: 50px; padding: 60px 20px; }
+.split-layout > div { flex: 1; }
+.why-content h2 { color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 20px; }
+.why-content ul { list-style: none; padding: 0; }
+.why-content li { margin-bottom: 15px; font-size: 1.1rem; }
+.why-content i { color: var(--accent-orange); margin-right: 10px; }
+.why-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+.cta-banner { background: var(--primary-blue); color: white; text-align: center; padding: 60px 20px; margin-top: 40px; }
+.cta-banner h2 { margin-bottom: 25px; font-size: 2rem; }
+
+/* =========================================
+   PÁGINA DE SERVICIOS
+   ========================================= */
+.page-header { background-size: cover; background-position: center; position: relative; padding: 100px 20px; text-align: center; color: white; }
+.page-header h1 { font-size: 3rem; margin: 0; position: relative; z-index: 2; }
+.page-header p { font-size: 1.2rem; position: relative; z-index: 2; color: var(--accent-orange); }
+
+.services-detail { padding: 60px 20px; }
+.service-row { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+.service-row.reverse { flex-direction: row-reverse; }
+.service-row > div { flex: 1; }
+.service-image img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.service-list { list-style: none; padding: 0; margin-top: 20px; }
+.service-list li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+.service-list li::before { content: '✓'; color: var(--accent-orange); position: absolute; left: 0; font-weight: bold; }
+
+/* =========================================
+   ACTUALIZACIONES DEL FOOTER
+   ========================================= */
+.mt-15 { margin-top: 15px; }
+.social-icons a { color: white; background: rgba(255,255,255,0.1); width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; transition: 0.3s; text-decoration: none;}
+.social-icons a:hover { background: var(--accent-orange); transform: translateY(-3px); }
+
+.reviews-box { margin-top: 25px; }
+.btn-review { display: inline-block; background: transparent; border: 1px solid var(--accent-orange); color: var(--accent-orange); padding: 8px 15px; border-radius: 4px; text-decoration: none; transition: 0.3s; font-size: 0.9rem;}
+.btn-review:hover { background: var(--accent-orange); color: white; }
+
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.credits { font-size: 0.9rem; }
+.credits a { color: var(--accent-orange); text-decoration: none; }
+.credits a:hover { text-decoration: underline; }
+
+/* Hacer responsive para celulares */
+@media (max-width: 768px) {
+    .split-layout, .service-row, .service-row.reverse { flex-direction: column; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+}
+/* =========================================
+   RETOQUES FINALES: BOTÓN PLANO Y SÓLIDO
+   ========================================= */
+.btn-primary {
+    display: inline-block !important;
+    background-color: #e68a00 !important; /* Un naranja más sólido y mate */
+    color: #ffffff !important;
+    padding: 15px 35px !important;
+    border-radius: 4px !important; /* Bordes un poco más rectos para un look industrial */
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: none !important; /* ESTO QUITA EL BRILLO/RESPLANDOR */
+    transition: background-color 0.3s ease !important;
+    border: none !important;
+    margin-top: 15px !important;
+}
+
+.btn-primary:hover {
+    background-color: #cc7a00 !important; /* Se oscurece al pasar el mouse, sin brillar */
+    transform: none !important; /* Quitamos el efecto de salto para que se sienta más firme */
+}
+
+/* =========================================
+   RETOQUES FINALES: FOOTER PERFECTAMENTE CENTRADO
+   ========================================= */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+    margin-top: 40px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.footer-bottom p {
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    color: #d1d5db !important;
+    text-align: center !important;
+    /* Esto es la magia para separar en dos líneas centradas: */
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important;
+    gap: 8px !important; 
+}
+
+.credits a {
+    color: #e68a00 !important; /* Mismo naranja sólido del botón */
+    text-decoration: none !important;
+    font-weight: bold !important;
+    letter-spacing: 0.5px !important;
+}
+
+.credits a:hover {
+    text-decoration: underline !important;
+}
+/* =========================================
+   MENÚ PEGAJOSO (STICKY HEADER)
+   ========================================= */
+header {
+    position: sticky !important;
+    top: 0;
+    z-index: 1000; /* Asegura que el menú siempre esté por encima de todo */
+    background-color: var(--white); /* Fondo sólido para tapar el contenido de abajo */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* Sombra elegante al hacer scroll */
+}
+/* =========================================
+   REPARACIÓN MOBILE (HEADER HORIZONTAL Y COMPACTO)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Top bar en una sola línea con texto más pequeño */
+    .top-bar .container {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        font-size: 0.75rem !important;
+        padding: 5px 10px !important;
+    }
+
+    /* 2. Forzar el menú principal a ser horizontal */
+    .navbar {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 10px !important;
+        gap: 5px !important;
+    }
+
+    /* 3. Reducir el tamaño del logo para hacer espacio */
+    .logo-text {
+        font-size: 1.1rem !important;
+    }
+
+    /* 4. Mantener los enlaces en línea */
+    .nav-links {
+        flex-direction: row !important;
+        gap: 12px !important;
+        width: auto !important;
+    }
+
+    /* 5. Achicar el texto de "Home" y "Services" */
+    .nav-links a {
+        font-size: 0.85rem !important;
+        margin-left: 0 !important;
+    }
+
+    /* 6. Botón compacto y proporcionado para celular */
+    .btn-estimate {
+        padding: 8px 12px !important;
+        font-size: 0.8rem !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        white-space: nowrap !important; /* Evita que se parta en dos líneas */
+    }
+}
