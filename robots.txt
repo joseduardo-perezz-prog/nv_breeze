@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /includes/
+Disallow: /vendor/
+Disallow: /process-quote.php
+
+Sitemap: https://www.nevadabreezehvac.com/sitemap.xml

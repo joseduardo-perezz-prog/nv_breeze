@@ -1,88 +1,126 @@
+<?php
+/**
+ * HEADER GLOBAL — <head> dinámico por página + navegación.
+ * Cada página define $page_title, $page_description, etc. ANTES de
+ * incluir este archivo. Aquí se construyen canonical, OG, Twitter,
+ * geo-tags y el JSON-LD del negocio.
+ */
+require_once __DIR__ . '/config.php';
+
+/* ---- Variables SEO con valores por defecto ---- */
+$page_title       = $page_title       ?? SITE_NAME . ' | Heating & Air Conditioning in Reno, NV';
+$page_description = $page_description ?? 'Professional HVAC services in Reno, Nevada. AC installation & repair, heating, furnace, ductless mini-splits and boiler service. Licensed & insured. Free estimates.';
+$page_robots      = $page_robots      ?? 'index, follow';
+$active           = $active           ?? '';
+
+/* ---- Canonical dinámico: deriva de la URL, sin .php ni /index ---- */
+$path = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');   // quita querystring
+$path = preg_replace('/\.php$/', '', $path);            // quita .php
+$path = preg_replace('#/index$#', '/', $path);          // /index -> /
+if ($path !== '/' && substr($path, -1) === '/') {
+    $path = rtrim($path, '/');                          // sin barra final (salvo home)
+}
+$canonical = $page_canonical ?? (SITE_URL . $path);
+
+/* ---- Imagen social por defecto ---- */
+$og_image = $page_og_image ?? (SITE_URL . '/img/img1.png');
+
+/* Versionado de assets para romper caché */
+$css_v = @filemtime(__DIR__ . '/../assets/css/style.css') ?: time();
+$js_v  = @filemtime(__DIR__ . '/../assets/js/main.js')   ?: time();
+?>
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nevada Breeze | Heating & Air Conditioning</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            DEFAULT: '#1a253d',
-                            dark: '#111827',
-                            light: '#2a3a5c'
-                        },
-                        orange: {
-                            DEFAULT: '#e68a00',
-                            hover: '#cc7a00',
-                            light: '#fff7ed'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
+
+    <title><?= htmlspecialchars($page_title) ?></title>
+    <meta name="description" content="<?= htmlspecialchars($page_description) ?>">
+    <meta name="robots" content="<?= htmlspecialchars($page_robots) ?>">
+    <link rel="canonical" href="<?= htmlspecialchars($canonical) ?>">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="<?= htmlspecialchars(SITE_NAME) ?>">
+    <meta property="og:title" content="<?= htmlspecialchars($page_title) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars($page_description) ?>">
+    <meta property="og:url" content="<?= htmlspecialchars($canonical) ?>">
+    <meta property="og:image" content="<?= htmlspecialchars($og_image) ?>">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= htmlspecialchars($page_title) ?>">
+    <meta name="twitter:description" content="<?= htmlspecialchars($page_description) ?>">
+    <meta name="twitter:image" content="<?= htmlspecialchars($og_image) ?>">
+
+    <!-- Geo tags -->
+    <meta name="geo.region" content="US-NV">
+    <meta name="geo.placename" content="<?= htmlspecialchars($business['city']) ?>">
+    <meta name="geo.position" content="<?= $business['lat'] ?>;<?= $business['lng'] ?>">
+    <meta name="ICBM" content="<?= $business['lat'] ?>, <?= $business['lng'] ?>">
+
+    <meta name="theme-color" content="#1a253d">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-    <div class="bg-navy text-white text-xs sm:text-sm py-2 px-4 border-b border-white/10 tracking-wide">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span class="flex items-center gap-2"><i class="fas fa-certificate text-orange"></i> Fully Insured Company</span>
-            <span class="flex items-center gap-2"><i class="fas fa-phone-alt text-orange"></i> <a href="tel:7755154777" class="hover:text-orange transition-colors font-semibold">(775) 515-4777</a></span>
-            <span class="flex items-center gap-2"><i class="fas fa-phone-alt text-orange"></i> <a href="tel:7752200320" class="hover:text-orange transition-colors font-semibold">(775) 220-0320</a></span>
+    <!-- Font Awesome (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Estilos del sitio (versionado) -->
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?= $css_v ?>">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/img/logo.png">
+    <link rel="apple-touch-icon" href="/img/logo.png">
+
+    <!-- JSON-LD schema.org -->
+    <?= nv_jsonld() ?>
+</head>
+<body<?= isset($body_class) ? ' class="' . htmlspecialchars($body_class) . '"' : '' ?>>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="container">
+            <span class="tb-item tb-hide-sm"><i class="fas fa-certificate"></i> <?= htmlspecialchars($business['license']) ?> · Licensed &amp; Insured</span>
+            <span class="tb-item"><i class="fas fa-phone-alt"></i> <a href="tel:<?= $business['phone_raw'] ?>"><?= htmlspecialchars($business['phone']) ?></a></span>
+            <span class="tb-item tb-hide-sm"><i class="fas fa-envelope"></i> <a href="mailto:<?= htmlspecialchars($business['email']) ?>"><?= htmlspecialchars($business['email']) ?></a></span>
         </div>
     </div>
 
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            
-            <div class="shrink-0">
-                <a href="index.php" class="flex items-center space-x-2 no-underline group">
-                    <img src="img/logo.png" alt="Nevada Breeze Logo" class="h-14 w-auto object-contain">
-                    
-                    <span class="font-extrabold text-xl sm:text-2xl text-navy tracking-tight group-hover:text-navy/90 transition-colors">NEVADA <span class="text-orange">BREEZE</span></span>
-                </a>
-            </div>
-            
-            <ul class="hidden md:flex items-center space-x-8 font-semibold tracking-wide">
-                <li><a href="index.php" class="text-navy hover:text-orange transition-colors duration-200 text-sm lg:text-base">Inicio</a></li>
-                <li><a href="services.php" class="text-navy hover:text-orange transition-colors duration-200 text-sm lg:text-base">Servicios</a></li>
-                <li><a href="contact.php" class="bg-navy text-white hover:bg-orange px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 text-sm">Estimado Gratis</a></li>
+    <!-- HEADER / NAV -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary">
+            <a href="/" class="brand" aria-label="<?= htmlspecialchars(SITE_NAME) ?> home">
+                <img src="/img/logo.png" alt="<?= htmlspecialchars(SITE_NAME) ?> logo">
+                <span class="brand-text">NEVADA <span>BREEZE</span></span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/" class="<?= $active === 'home' ? 'is-active' : '' ?>">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="/services" class="dropdown-toggle <?= $active === 'services' ? 'is-active' : '' ?>">Services</a>
+                    <ul class="dropdown">
+                        <?php foreach ($business['services'] as $s): ?>
+                            <li><a href="/services#<?= htmlspecialchars($s['slug']) ?>"><?= htmlspecialchars($s['title']) ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+                <li><a href="/projects" class="<?= $active === 'projects' ? 'is-active' : '' ?>">Projects</a></li>
+                <li><a href="/about" class="<?= $active === 'about' ? 'is-active' : '' ?>">About</a></li>
+                <li><a href="/contact" class="<?= $active === 'contact' ? 'is-active' : '' ?>">Contact</a></li>
+                <li class="nav-cta"><a href="/contact" class="btn btn-primary">Get a Quote</a></li>
             </ul>
-            
-            <div class="md:hidden">
-                <button id="menu-toggle" class="text-navy hover:text-orange focus:outline-none p-2 transition-colors duration-200" aria-label="Toggle Navigation">
-                    <i class="fas fa-bars text-xl" id="menu-icon"></i>
-                </button>
-            </div>
         </nav>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl transition-all duration-300 absolute w-full left-0 z-50">
-            <ul class="px-4 py-6 space-y-4 font-medium text-center">
-                <li><a href="index.php" class="mobile-link block text-navy hover:text-orange py-2 text-lg font-semibold transition-colors duration-200">Home</a></li>
-                <li><a href="services.php" class="mobile-link block text-navy hover:text-orange py-2 text-lg font-semibold transition-colors duration-200">Services</a></li>
-                <li><a href="contact.php" class="mobile-link inline-block bg-navy text-white hover:bg-orange px-8 py-3 rounded-xl shadow-md w-full max-w-xs font-bold transition-all duration-200">Free Estimate</a></li>
-            </ul>
-        </div>
     </header>
+    <div class="nav-backdrop" hidden></div>
 
-    <main class="flex-grow">
+    <main>

@@ -1,0 +1,14 @@
+# ── Credenciales SMTP (NUNCA subir a Git) ──────────────────────────
+includes/config.secret.php
+
+# ── Sistema / editores ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*~
+.idea/
+.vscode/
+
+# ── PHP / Composer (vendor SÍ se sube para hosting compartido) ──────
+composer.phar
