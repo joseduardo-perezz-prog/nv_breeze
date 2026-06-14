@@ -97,7 +97,7 @@ $js_v  = @filemtime(__DIR__ . '/../assets/js/main.js')   ?: time();
         <nav class="nav container" aria-label="Primary">
             <a href="/" class="brand" aria-label="<?= htmlspecialchars(SITE_NAME) ?> home">
                 <img src="/img/logo.png" alt="<?= htmlspecialchars(SITE_NAME) ?> logo">
-                <span class="brand-text">NEVADA <span>BREEZE</span></span>
+                <span class="brand-text" translate="no">NEVADA <span>BREEZE</span></span>
             </a>
 
             <button class="nav-toggle" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false">

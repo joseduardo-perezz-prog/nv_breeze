@@ -10,7 +10,7 @@ if (!isset($business)) { require_once __DIR__ . '/config.php'; }
 
                 <!-- Marca + NAP -->
                 <div class="footer-col brand-col">
-                    <h3>NEVADA <span>BREEZE</span></h3>
+                    <h3 translate="no">NEVADA <span>BREEZE</span></h3>
                     <p>Keeping Reno and surrounding areas comfortable all year round with professional, honest heating and air conditioning service.</p>
                     <span class="footer-license"><?= htmlspecialchars($business['license']) ?></span>
                     <div class="socials">
